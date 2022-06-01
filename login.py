@@ -9,6 +9,7 @@ class Login():
     def __init__ (self):
         self.LoginWindow = Tk()
         self.LoginWindow.title("Sistema de Barbearia")
+        self.LoginWindow.iconbitmap("barbearia.ico")
         self.LoginWindow.minsize(width=1200,height=600)
         self.LoginWindow.resizable(False,False)
         self.LoginCanvas = Canvas(self.LoginWindow)
