@@ -18,6 +18,7 @@ class Menu():
     def __init__ (self):
         self.MenuWindow = Tk()
         self.MenuWindow.title("Sistema de Barbearia - MENU")
+        self.MenuWindow.iconbitmap("barbearia.ico")
         self.MenuWindow.minsize(width=1200,height=600)
         self.MenuWindow.resizable(False, False)
         self.MenuCanvas = Canvas(self.MenuWindow)

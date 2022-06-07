@@ -22,9 +22,11 @@ class Cadastro():
         self.NomeTxt = self.CadastroCanvas.create_text(400,200,text="NOME DO CLIENTE:",font=("Times New Roman",12,'bold'),fill="white")
         self.NomeEntry = Entry(self.CadastroCanvas,width=30,fg="black")
         self.CadastroCanvas.create_window(620,200,window=self.NomeEntry)
+
         self.TelefoneTxt = self.CadastroCanvas.create_text(400,250,text="TELEFONE:",font=("Times New Roman",12,'bold'),fill="white")
         self.TelefoneEntry = Entry(self.CadastroCanvas,width=30,fg="black")
         self.CadastroCanvas.create_window(620,250,window=self.TelefoneEntry)
+
         self.NascimentoTxt = self.CadastroCanvas.create_text(380,300,text="DATA DE NASCIMENTO:",font=("Times New Roman",12,'bold'),fill="white")
         self.NascimentoDia =  Spinbox(self.CadastroCanvas,width=3,from_=1, to=31)
         self.CadastroCanvas.create_window(518,300,window=self.NascimentoDia)   
@@ -33,10 +35,12 @@ class Cadastro():
                                                                           'Novembro','Dezembro'))
         self.CadastroCanvas.create_window(600,300,window=self.NascimentoMes)    
         self.NascimentoAno =  Spinbox(self.CadastroCanvas,width=8,from_=1900, to=2050)
-        self.CadastroCanvas.create_window(700,300,window=self.NascimentoAno) 
+        self.CadastroCanvas.create_window(700,300,window=self.NascimentoAno)
+
         self.ServicoTxt = self.CadastroCanvas.create_text(400,350,text="TIPO DE SERVIÇO:",font=("Times New Roman",12,'bold'),fill="white")
-        self.Servico1 =  ttk.Combobox(self.CadastroCanvas,values=['Barba','Cabelo','Barba & Cabelo'],width=20)   
-        self.CadastroCanvas.create_window(585,350,window=self.Servico1) 
+        self.Servico1 =  ttk.Combobox(self.CadastroCanvas,values=['Barba','Cabelo','Barba & Cabelo'],width=20)
+        self.CadastroCanvas.create_window(585,350,window=self.Servico1)
+
         self.ComoConheceuTxt = self.CadastroCanvas.create_text(400,400,text="COMO CONHECEU:",font=("Times New Roman",12,'bold'),fill="white")
         self.ComoConheceu =  Text(self.CadastroCanvas,width=50,height=10)
         self.CadastroCanvas.create_window(700,480,window=self.ComoConheceu)   
@@ -50,6 +54,8 @@ class Cadastro():
                                  self.NascimentoAno.get(),self.Servico1.get(),self.ComoConheceu.get(1.0,END),0,))
             self.connect.commit()
             self.connect.close()
+
+            # PopUp
             self.PopUp = Canvas(self.CadastroCanvas,bg="black",width=250,height=100)
             self.CadastroCanvas.create_window(600,300,window=self.PopUp)
             self.PopUp.create_text(125,20,text="SALVO COM SUCESSO",font=("Times New Roman",14,'bold'),fill="white")
@@ -57,6 +63,7 @@ class Cadastro():
                 self.PopUp.destroy()
             self.ButtonOK = Button(self.PopUp,text="OK",command=Close)
             self.PopUp.create_window(125,60,window=self.ButtonOK)
+
             self.NomeEntry.delete(0,END)
             self.TelefoneEntry.delete(0,END)
             self.NascimentoDia.delete(0,END)

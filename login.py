@@ -12,14 +12,17 @@ class Login():
         self.LoginWindow.iconbitmap("barbearia.ico")
         self.LoginWindow.minsize(width=1200,height=600)
         self.LoginWindow.resizable(False,False)
+
         self.LoginCanvas = Canvas(self.LoginWindow)
         self.LoginCanvas.pack(expand=1,fill=BOTH)
         #BACKGROUND
         self.LoginBack = PhotoImage(file="image/loginback.png")
         self.LoginCanvas.create_image(0,0,image=self.LoginBack,anchor=NW)
-        #TITULO DA JANELA
+
+        #TEXTO TITULO DA JANELA
         self.LoginTitle = PhotoImage(file="image/logintitle.png")
-        self.LoginCanvas.create_image(600,100,image=self.LoginTitle) 
+        self.LoginCanvas.create_image(600,100,image=self.LoginTitle)
+
         #BANCO DE DADOS
         self.connect = sqlite3.connect("database/login.db")
         self.cursor = self.connect.cursor()     
@@ -47,7 +50,7 @@ class Login():
                 self.connect = sqlite3.connect("database/login.db")
                 self.cursor = self.connect.cursor()     
                 self.cursor.execute("SELECT senha FROM logins WHERE nome = ?",(self.LoginUser.get(),))
-                self.UserPassword= []
+                self.UserPassword = []
                 for password in self.cursor.fetchone(): 
                     self.UserPassword.append(password)   
                 print (self.UserPassword)
@@ -57,7 +60,7 @@ class Login():
                     self.cursor = self.connect.cursor()
                     self.cursor.execute("UPDATE config SET usuario = ? WHERE id = ?",(self.LoginUser.get(),1))
                     self.connect.commit()
-                    self.connect.close
+                    self.connect.close()
                     self.LoginWindow.destroy()
                     menupy.Menu.__init__(self)
                 else:
@@ -71,11 +74,13 @@ class Login():
             self.LoginCanvas.create_window(600,300,window=self.cadastrar_canvas)   
             self.cadastrar_canvas.create_text(200,20,text="LOGIN:",font=("Arial Black",10,"bold"),fill="black") 
             self.nome_entry = Entry(self.cadastrar_canvas,width=30,justify='center')
+
             self.cadastrar_canvas.create_window(200,50,window=self.nome_entry)
             self.cadastrar_canvas.create_text(200,80,text="SENHA:",font=("Arial Black",10,"bold"),fill="black") 
             self.senha_entry = Entry(self.cadastrar_canvas,width=30,justify='center')
             self.cadastrar_canvas.create_window(200,110,window=self.senha_entry)
             self.texto_erro = self.cadastrar_canvas.create_text(200,300,text="",font=("Arial Black",10,"bold"),fill="black")
+
             def Aceitar():
                 if self.nome_entry.get() != "" and self.senha_entry.get() != "" :
                     try:
@@ -96,6 +101,7 @@ class Login():
              
             self.btn_confirmar = Button(self.cadastrar_canvas,text='CONFIRMAR',width=10,bg="blue",fg="white",activebackground="#00008B",command=Aceitar)
             self.cadastrar_canvas.create_window(200,200,window=self.btn_confirmar)
+
             def Voltar():
                 self.cadastrar_canvas.destroy()
                 
@@ -119,14 +125,13 @@ class Login():
         self.LoginCanvas.create_window(600,430,window=self.ButtonAccept)
         self.ButtonCadastrar = Button(self.LoginCanvas,text='CADASTRAR',width=10,bg="blue",fg="white",activebackground="#00008B",command=Cadastrar)
         self.LoginCanvas.create_window(600,470,window=self.ButtonCadastrar)
+
         #ERRO DE LOGIN
         self.LogError = self.LoginCanvas.create_text(600,530,text="",font=("Arial",12,"bold"),fill="yellow")
         
         #CREDITOS
         self.LoginCanvas.create_text(600,580,text="Sistema desenvolvido por Allan Scala",font=("Arial",8,"bold"),fill="white")
-        
-        
-        
+
         self.LoginWindow.mainloop()
 #Login()
 
